@@ -1,0 +1,35 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model SetModel {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  size      Int?
+  updatedAt DateTime @updatedAt
+}
+
+model Derangement {
+  createdAt       DateTime @default(now())
+  executionTimeNs Int?
+  id              String   @id @default(cuid())
+  method          String?
+  result          Float?
+  updatedAt       DateTime @updatedAt
+}
+
+model Profile {
+  createdAt        DateTime @default(now())
+  fastDerangement  Float?
+  fastTimeNs       Int?
+  id               String   @id @default(cuid())
+  naiveDerangement Float?
+  naiveTimeNs      Int?
+  testSize         Int?
+  updatedAt        DateTime @updatedAt
+}
